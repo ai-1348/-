@@ -1,63 +1,57 @@
 const { cmd } = require('../command');
-const { runtime } = require('../lib/functions');
-
-function getPakistanTime() {
-    const now = new Date();
-    const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-    return new Date(utc + 5 * 60 * 60000);
-}
-
-let lastUsedDesignIndex = 0;
 
 cmd({
     pattern: "uptime",
     alias: ["runtime", "up"],
-    category: "main",
+    desc: "Check bot uptime",
+    category: "utility",
     react: "⏱️",
     filename: __filename
 },
-async (conn, mek, m, { from, sender }) => {
+async (conn, mek, m, { from, reply }) => {
     try {
-        const uptime = runtime(process.uptime());
-        const pakistanTime = getPakistanTime();
-        const date = pakistanTime.toLocaleDateString('en-GB');
-        const time = pakistanTime.toLocaleTimeString('en-US', { hour12: true });
+        // ⏳ React - processing
+        await conn.sendMessage(from, { react: { text: '⏳', key: m.key } });
+        
+        // 1000ms delay to ensure react is visible
+        await new Promise(resolve => setTimeout(resolve, 1000));
 
-        const design1 = `*╭────✦ SYSTEM STATUS ✦────╮*
-*   ⏱️ UPTIME*
-    ✦ ${uptime}
-*   📅 DATE*
-    ✦ ${date}
-*   ⏰ TIME*
-    ✦ ${time}
-*   ⚡ STATUS*
-    ✦ 🟢 INLINE 
-*╰─✦ 🄳🄰🅁🄺 🄰🄳🄴🄴🄻 🄼🄳 ✦─╯*`;
+        const formatUptime = (seconds) => {
+            const days = Math.floor(seconds / (3600 * 24));
+            const hours = Math.floor((seconds % (3600 * 24)) / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const secs = Math.floor(seconds % 60);
+            
+            let timeString = '';
+            if (days > 0) timeString += `${days} day${days > 1 ? 's' : ''} `;
+            if (hours > 0) timeString += `${hours} hour${hours > 1 ? 's' : ''} `;
+            if (minutes > 0) timeString += `${minutes} minute${minutes > 1 ? 's' : ''} `;
+            if (secs > 0 || timeString === '') timeString += `${secs} second${secs !== 1 ? 's' : ''}`;
+            
+            return timeString.trim();
+        };
 
-        const styles = [design1, design2];
-
-        const selectedStyle = styles[lastUsedDesignIndex];
-        lastUsedDesignIndex = (lastUsedDesignIndex + 1) % styles.length;
-
-        const imageUrl = 'https://files.catbox.moe/pf9a6s.jpg';
-
-        await conn.sendMessage(from, {
-            image: { url: imageUrl },
-            caption: selectedStyle,
+        const uptime = formatUptime(process.uptime());
+        
+        await conn.sendMessage(from, { 
+            text: `⏱️ *Uptime:* ${uptime}`,
             contextInfo: {
-                mentionedJid: [sender],
-                forwardingScore: 999,
                 isForwarded: true,
-                forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363404811118873@newsletter',
-                    newsletterName: 'ԃαɾƙ-αԃҽҽʅ-ɱԃ',
-                    serverMessageId: 143
-                }
+                forwardingScore: 999,
+                mentionedJid: [m.sender]
             }
         }, { quoted: mek });
 
+        // 800ms delay before success react
+        await new Promise(resolve => setTimeout(resolve, 800));
+        
+        // ✅ React - success
+        await conn.sendMessage(from, { react: { text: '✅', key: m.key } });
+
     } catch (e) {
-        console.error("Uptime Error:", e);
-        await conn.sendMessage(from, { text: `❌ Error: ${e.message}` }, { quoted: mek });
+        console.error("Error in uptime command:", e);
+        // ❌ React - error
+        await conn.sendMessage(from, { react: { text: '❌', key: m.key } });
+        await reply(`❌ Error checking uptime: ${e.message}`);
     }
 });
