@@ -1,4 +1,4 @@
-// ✅ Coded by NAWAZ-MD for NAWAZ MD
+// ✅ Coded by POWER BY MAFIA ADEEL
 
 const { cmd } = require('../command');
 const axios = require('axios');
@@ -35,7 +35,7 @@ cmd({
         const isVideo = pinData.type === 'video';
 
         // 📌 Send media with stylish caption
-        const caption = `╭━━━〔 *NAWAZ-MD* 〕━━━┈⊷
+        const caption = `╭━━━〔 *GHOSTX-MD* 〕━━━┈⊷
 ┃▸╭───────────
 ┃▸┃๏ *PINS DOWNLOADER*
 ┃▸└───────────···๏
@@ -46,7 +46,7 @@ cmd({
 ┇๏ *Platform:* Pinterest
 ┇๏ *Quality:* HD Ultra
 ╰━━❑━⪼
-> *© Pᴏᴡᴇʀᴇᴅ Bʏ NAWAZ-MD-Aɪ ♡*`;
+> *© POWER BY MAFIA ADEEL ♡*`;
 
         if (isVideo) {
             // Send video as document
