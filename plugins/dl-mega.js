@@ -40,9 +40,9 @@ async (conn, mek, m, { from, q, reply }) => {
         // Send file
         await conn.sendMessage(from, {
             document: fs.readFileSync(savePath),
-            fileName: file.name || "NAWAZ-MD.zip",
+            fileName: file.name || "ADEEL-MD.zip",
             mimetype: "application/zip",
-            caption: "📦 Downloaded from Mega NZ\n\nPowered By NAWAZ-MD"
+            caption: "📦 Downloaded from Mega NZ\n\nPOWER BY MAFIA ADEEL"
         }, { quoted: mek });
 
         // Delete temp file
