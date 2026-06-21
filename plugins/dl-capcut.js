@@ -39,7 +39,7 @@ cmd({
 ⏱ *Duration:* ${Math.floor(result.duration / 1000)}s
 🎞 *Quality:* ${media.quality}
 
-✨ Powered By JawadTechX`;
+✨ POWER BY MAFIA ADEEL`;
 
     await conn.sendMessage(
       from,
