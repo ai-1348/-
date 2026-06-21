@@ -1,5 +1,5 @@
 //---------------------------------------------------------------------------
-//           NAWAZ MD - YOUTUBE VIDEO DOWNLOADER (FIXED)
+//           ADEEL MD - YOUTUBE VIDEO DOWNLOADER (FIXED)
 //---------------------------------------------------------------------------
 
 const { cmd } = require("../command");
@@ -88,7 +88,7 @@ cmd(
 
 📥 Downloading please wait...
 
-🚀 Powered by Nawaz MD
+🚀 POWER BY MAFIA ADEEL
 `;
 
       await conn.sendMessage(from, {
@@ -117,7 +117,7 @@ cmd(
         await conn.sendMessage(from, {
           video: Buffer.from(videoBuffer.data),
           mimetype: "video/mp4",
-          caption: `✅ *${dlData.title}*\n\n🚀 Powered by Nawaz MD`
+          caption: `✅ *${dlData.title}*\n\n🚀 POWER BY MAFIA ADEEL`
         }, { quoted: mek });
 
       } catch (err) {
