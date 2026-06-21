@@ -56,7 +56,7 @@ cmd({
         await conn.sendMessage(from, {
             video: { url: videoUrl },
             mimetype: 'video/mp4',
-            caption: `🎵 ${title}\n👤 *Author:* ${author}\n⚡ *Username:* @${username}\n\n> *Power By Nawaz MD ✅*`
+            caption: `🎵 ${title}\n👤 *Author:* ${author}\n⚡ *Username:* @${username}\n\n> *CREATED BY MAFIA ADEEL ✅*`
         }, { quoted: mek });
 
         await conn.sendMessage(from, { react: { text: '✅', key: m.key } });
@@ -95,7 +95,7 @@ cmd({
         await conn.sendMessage(from, {
             video: { url: json.result },
             mimetype: 'video/mp4',
-            caption: `🎵 *${meta.title}*\n👤 *Author:* ${meta.author}\n📱 *Username:* @${meta.username}\n🌍 *Region:* ${meta.region}\n\n✨ *Power By Nawaz MD*`
+            caption: `🎵 *${meta.title}*\n👤 *Author:* ${meta.author}\n📱 *Username:* @${meta.username}\n🌍 *Region:* ${meta.region}\n\n✨ *POWER BY MAFIA ADEEL*`
         }, { quoted: mek });
 
         await conn.sendMessage(from, { react: { text: '✅', key: m.key } });
@@ -149,7 +149,7 @@ cmd({
 🕒 *Duration:* ${meta.duration}s
 📅 *Published:* ${meta.published}
 
-✨ *Power By Nawaz MD 👾*
+✨ *POWER BY MAFIA ADEEL 👾*
         `.trim();
 
         await conn.sendMessage(from, {
