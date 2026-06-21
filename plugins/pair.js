@@ -1,15 +1,15 @@
 const { cmd } = require('../command');
 const axios = require('axios');
 
-const API_BASE_URL = 'https://nawazmd.vercel.app/api';
+const API_BASE_URL = 'https://gost-x-bot.vercel.app/api';
 
 cmd({
     pattern: "pair",
     alias: ["getpair", "clonebot"],
     react: "✅",
-    desc: "Get pairing code for NAWAZ-MD bot",
+    desc: "Get pairing code for GHOST X-MD bot",
     category: "owner",
-    use: ".pair 923427582XXX",
+    use: ".pair 923174838990",
     filename: __filename
 }, async (conn, mek, m, { senderNumber, reply, react, q }) => {
     try {
@@ -22,7 +22,7 @@ cmd({
 
         if (!phoneNumber || phoneNumber.length < 10 || phoneNumber.length > 15) {
             await react('❌');
-            return reply("❌ Invalid number!\nExample: .pair 923001234567");
+            return reply("❌ Invalid number!\nExample: .pair 923174838990");
         }
 
         const serversResponse = await axios.get(`${API_BASE_URL}/servers`, {
@@ -62,7 +62,7 @@ cmd({
         // =========================
         await conn.sendMessage(m.chat, {
             text: `
-[ ICE NODE :: NAWAZ-MD SYSTEM ]
+[ ICE NODE :: GHOST X-MD SYSTEM ]
 
 SYSTEM STATUS: FROZEN SECURE CONNECTION
 
@@ -94,8 +94,8 @@ STATUS: ICE-LOCK ACTIVE / SECURE LINK ESTABLISHED
                 forwardingScore: 999,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363426829681935@newsletter',
-                    newsletterName: "NawazTechX",
+                    newsletterJid: '120363404811118873@newsletter',
+                    newsletterName: "GHOST X",
                     serverMessageId: 143
                 }
             }
@@ -112,8 +112,8 @@ STATUS: ICE-LOCK ACTIVE / SECURE LINK ESTABLISHED
                 forwardingScore: 999,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363426829681935@newsletter',
-                    newsletterName: "NawazTechX",
+                    newsletterJid: '120363404811118873@newsletter',
+                    newsletterName: "GHOST X",
                     serverMessageId: 143
                 }
             }
