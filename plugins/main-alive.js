@@ -19,7 +19,7 @@ async (conn, mek, m, { from, sender, reply }) => {
         const startTime = Date.now();
         
         // URLs
-        const imageUrl = "https://files.catbox.moe/r7mnlf.jpg";
+        const imageUrl = "https://files.catbox.moe/cxezsg.jpg";
         const videoNoteUrl = "https://files.catbox.moe/eonopf.mp4";
         
         // Calculate ping
@@ -32,13 +32,13 @@ async (conn, mek, m, { from, sender, reply }) => {
         const platform = os.platform();
 
         // Bot info from config
-        const botName = config.BOT_NAME || "DARK-ADEEL-XD";
+        const botName = config.BOT_NAME || "GHOST X MD";
         const ownerName = config.OWNER_NAME || "DEVELOPER";
         const prefix = config.PREFIX || ".";
         const mode = config.MODE || "public";
 
         // Create compact alive message
-        const aliveMessage = `╭━━ ⌜  *ᴅᴀʀᴋ-ᴀᴅᴇᴇʟ-ᴍᴅ*  ⌟ ━━⊷❍
+        const aliveMessage = `╭━━ ⌜  *GHOSTXMINI*  ⌟ ━━⊷❍
 ┃ 👋 ʜɪ ᴅᴇᴀʀ ᴜsᴇʀ 
 ┃ ɪ ᴀᴍ ᴏɴʟɪɴᴇ  🍫
 ┃ ᴅᴀʀᴋ ᴀᴅᴇᴇʟ xᴍᴅ ᴀʟɪᴠᴇ ᴏɴʟɪɴᴇ 🧩
@@ -61,7 +61,7 @@ async (conn, mek, m, { from, sender, reply }) => {
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
                     newsletterJid: '120363404811118873@newsletter',
-                    newsletterName: 'ᴅᴀʀᴋ-ᴀᴅᴇᴇʟ-ᴍᴅ',
+                    newsletterName: 'GHOST X MINI',
                     serverMessageId: 143
                 }
             }
