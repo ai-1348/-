@@ -32,7 +32,7 @@ const formatCategory = (category, cmds) => {
         const commandName = cmd.pattern || '';
         return `┃ ─ ${toSmallCaps(commandName)}`;
     }).join('\n');
-    let footer = `\n┃\n╰━━━━━━━━━━━━━━━━━━━━⬣`;
+    let footer = `\n┃\n╰━━━━━━━━━━━━━━━━━━━⬣`;
     return `${title}${body}${footer}`;
 };
 
@@ -135,7 +135,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
         // Main menu text with sidebar design from Menu 2
         let dec = `╭━━━━━━━━━━━━━━━━━━╮
 ┃  ${BOT_NAME}
-╰━━━━━━━━━━━━━━━━━━━━⬣
+╰━━━━━━━━━━━━━━━━━━━⬣
 
 ╭━━━━〔 🤖 ʙᴏᴛ ɪɴғᴏ  〕━━━━╮
 ┃ 👑 ${toSmallCaps('Owner')}: ${OWNER_NAME}
@@ -144,7 +144,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ┃ 📦 ${toSmallCaps('Prefix')}: ${PREFIX}
 ┃ ⚙️ ${toSmallCaps('Mode')}: ${MODE}
 ┃ 🏷️ ${toSmallCaps('Version')}: ${VERSION}
-╰━━━━━━━━━━━━━━━━━━━━⬣
+╰━━━━━━━━━━━━━━━━━━━⬣
 ${menuSections}
 
 > ${DESCRIPTION || ''}`;
