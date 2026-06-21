@@ -21,14 +21,14 @@ cmd({
     const responseTime = Date.now() - start;
 
     await conn.sendMessage(from, {
-        text: `*∂αкк α∂єєℓ м∂ ѕρєє∂ ✦: ${responseTime}ms ${reactionEmoji}*`,
+        text: `*𝙶𝙷𝙾𝚂𝚃 𝚇 𝙼𝙸𝙽𝙸 𝚂𝙿𝙴𝙴𝙳✦: ${responseTime}ms ${reactionEmoji}*`,
         contextInfo: {
             mentionedJid: [sender],
             forwardingScore: 999,
             isForwarded: true,
             forwardedNewsletterMessageInfo: {
                 newsletterJid: '120363404811118873@newsletter',
-                newsletterName: "ԃαɾƙ-αԃҽҽʅ-ɱԃ",
+                newsletterName: "GHOST X MINI",
                 serverMessageId: 143
             }
         }
