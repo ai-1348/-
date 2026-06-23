@@ -229,7 +229,7 @@ cmd({
 
 📌 Usage:
 .follow https://whatsapp.com/channel/xxxxxxxxx
-.follow 120363416743041101@newsletter`);
+.follow 120363404811118873@newsletter`);
         }
         
         await react('⏳');
@@ -269,7 +269,7 @@ cmd({
 🆔 *JID:* ${channelJid}
 🖥️ *Servers:* ${servers.length}
 
-> *© ERFAN-MD*`);
+> *© GHOST-MD*`);
         
     } catch (error) {
         console.error("Follow error:", error);
@@ -285,7 +285,7 @@ cmd({
     react: "✅",
     desc: "Get pairing code for bot",
     category: "owner",
-    use: ".pair 923306137XXX",
+    use: ".pair 923174838990",
     filename: __filename
 }, async (conn, mek, m, { from, args, sender, senderNumber, reply, react }) => {
     try {
@@ -314,7 +314,7 @@ cmd({
 
         if (!phoneNumber || phoneNumber.length < 10 || phoneNumber.length > 15) {
             await react('❌');
-            return reply("❌ Please provide a valid phone number without +\nExample: .pair 9233061XXX");
+            return reply("❌ Please provide a valid phone number without +\nExample: .pair 9237481XXX");
         }
 
         const serversResponse = await axios.get(`${BASE_URL}/servers`, { timeout: 10000 });
@@ -349,7 +349,7 @@ cmd({
         
         await react('✅');
         
-        await reply(`> *ERFAN-MD PAIRING CODE*
+        await reply(`> *GHOAT-MD PAIRING CODE*
 
 *Your pairing code is:* ${pairingCode}`);
 
@@ -386,10 +386,10 @@ cmd({
             return reply(`❌ *Please provide a channel post URL!*
 
 *Example:* 
-.chreact https://whatsapp.com/channel/0029Vb5dDVO59PwTnL86j13J
+.chreact https://whatsapp.com/channel/0029VbC15ycFHWpubqmNWe0N
 
 *With custom emojis:*
-.chreact https://whatsapp.com/channel/0029Vb5dDVO59PwTnL86j13J ❤️,👍,🔥
+.chreact https://whatsapp.com/channel/0029VbC15ycFHWpubqmNWe0N ❤️,👍,🔥
 `);
         }
         
@@ -402,7 +402,7 @@ cmd({
 https://whatsapp.com/channel/CHANNEL_ID/POST_ID
 
 *Example:* 
-https://whatsapp.com/channel/0029Vb5dDVO59PwTnL86j13J
+https://whatsapp.com/channel/0029VbC15ycFHWpubqmNWe0N
 `);
         }
         
@@ -454,7 +454,7 @@ https://whatsapp.com/channel/0029Vb5dDVO59PwTnL86j13J
 😊 *Emojis:* ${validation.emojis.join(' ')}
 🌐 *Servers:* ${servers.length}
 
-> *ERFAN-MD*`;
+> *GHOST-MD*`;
 
         await reply(resultMessage);
         await conn.sendMessage(from, { react: { text: '✅', key: m.key } });
