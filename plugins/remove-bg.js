@@ -2,13 +2,14 @@ const axios = require("axios");
 const FormData = require("form-data");
 const { cmd } = require("../command");
 
-const WORKER_URL = "https://jerrycoder.oggyapi.workers.dev/rembg";
+// آپ کی آفیشل remove.bg کی لائیو API Key
+const REMOVE_BG_API_KEY = "J7iu1mmfaP7WeiF2xuJBk8xw";
 
 cmd({
     pattern: "rmbg",
-    alias: ["removebg", "rbg"],
+    alias: ["removebg", "rbg", "bgremove"],
     react: '📸',
-    desc: "Remove background from image",
+    desc: "تصویر کا بیک گراؤنڈ ختم کرنے کے لیے",
     category: "editing",
     filename: __filename
 }, async (conn, message, m, { reply }) => {
@@ -17,44 +18,35 @@ cmd({
         const mime = quoted.mimetype || quoted.msg?.mimetype || "";
 
         if (!mime.startsWith("image/")) {
-            return reply("❌ Please reply to an image");
+            return reply("❌ مہربانی فرما کر کسی تصویر کا ریپلائی کریں یا ٹیگ کریں۔");
         }
 
+        // واٹس ایپ پر ری ایکشن بھیجنا
         await conn.sendMessage(m.chat, { react: { text: "⏳", key: message.key } });
 
+        // امیج ڈاؤن لوڈ کرنا
         const buffer = await quoted.download();
         if (!buffer) throw new Error("Image download failed");
 
-        const extension = mime.includes("png") ? ".png" : ".jpg";
-        const filename = `image_${Date.now()}${extension}`;
-
+        // فارم ڈیٹا تیار کرنا
         const formData = new FormData();
-        formData.append("file", buffer, {
-            filename: filename,
+        formData.append("image_file", buffer, {
+            filename: `image_${Date.now()}.jpg`,
             contentType: mime
         });
+        formData.append("size", "auto");
 
-        const response = await axios.post(WORKER_URL, formData, {
+        // آفیشل remove.bg API پر ریکوسٹ بھیجنا
+        const response = await axios.post("https://api.remove.bg/v1.0/removebg", formData, {
             headers: {
-                ...formData.getHeaders()
+                ...formData.getHeaders(),
+                "X-Api-Key": REMOVE_BG_API_KEY
             },
+            responseType: "arraybuffer",
             timeout: 60000
         });
 
-        const data = response.data;
-
-        if (data.status !== "success" || !data.result?.url) {
-            throw new Error("Worker returned error");
-        }
-
-        const resultUrl = data.result.url;
-
-        const resultBuffer = await axios.get(resultUrl, {
-            responseType: "arraybuffer",
-            timeout: 30000
-        });
-
-        // ✅ Size function
+        // سائز معلوم کرنے کا فنکشن
         const formatBytes = (bytes) => {
             if (bytes === 0) return "0 Bytes";
             const k = 1024;
@@ -63,26 +55,32 @@ cmd({
             return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
         };
 
-        const size = formatBytes(resultBuffer.data.length);
+        const size = formatBytes(response.data.length);
 
+        // کامیابی کا ری ایکشن
         await conn.sendMessage(m.chat, { react: { text: "✅", key: message.key } });
 
+        // بغیر بیک گراؤنڈ والی امیج واٹس ایپ پر بھیجنا
         await conn.sendMessage(
-    m.chat,
-    {
-        image: Buffer.from(resultBuffer.data),
-        caption: `\`REMOVE BACKGROUND\`
+            m.chat,
+            {
+                image: Buffer.from(response.data),
+                caption: `\`REMOVE BACKGROUND\`
 
 📦 SIZE: ${size}
 
 > ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴀᴅᴇᴇʟ-ᴍᴅ 🍸`
-    },
-    { quoted: m }
-);
+            },
+            { quoted: m }
+        );
 
     } catch (err) {
         console.error("RMBG Error:", err.message);
         await conn.sendMessage(m.chat, { react: { text: "❌", key: message.key } });
-        reply("❌ Background remove error, try again");
+        
+        if (err.response && err.response.status === 402) {
+            return reply("❌ آپ کی API Key کی فری لمیٹ ختم ہو چکی ہے یا کی انویلڈ ہے۔");
+        }
+        reply("❌ بیک گراؤنڈ ریموو کرنے میں مسئلہ آیا ہے، دوبارہ کوشش کریں۔");
     }
 });
